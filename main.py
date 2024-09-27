@@ -21,6 +21,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        # update method to update the ship dicretion on the button press
+        player.update(dt)
+        # define the screen color ...
         screen.fill(color='black', rect=None, special_flags=0)
         # re-render player on the screen
         player.draw(screen)
