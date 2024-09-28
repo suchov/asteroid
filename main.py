@@ -1,6 +1,7 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
+import sys
 import pygame
 from constants import *
 from player import Player
@@ -32,6 +33,11 @@ def main():
         # update method to update the ship dicretion on the button press
         for obj in updatable:
             obj.update(dt)
+        # stop the game if colide
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
+                print("Game over!")
+                sys.exit()
         # define the screen color ...
         screen.fill(color='black', rect=None, special_flags=0)
         # re-render player on the screen
