@@ -47,7 +47,7 @@ def main():
         # check if asteroids meet with the bullets
             for shot in shots:
                 if asteroid.collides_with(shot):
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill()
 
         # define the screen color ...
