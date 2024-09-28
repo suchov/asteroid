@@ -55,6 +55,12 @@ def main():
         delta = clock.tick(60)
         # get the delta that we'll use later
         dt = delta / 1000
+        # check if asteroids meet with the bullets
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    asteroid.kill()
+                    shot.kill()
 
 
 if __name__ == "__main__":
