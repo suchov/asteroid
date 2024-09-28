@@ -44,6 +44,12 @@ def main():
             if asteroid.collides_with(player):
                 print("Game over!")
                 sys.exit()
+        # check if asteroids meet with the bullets
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    asteroid.kill()
+                    shot.kill()
+
         # define the screen color ...
         screen.fill(color='black', rect=None, special_flags=0)
         # re-render player on the screen
@@ -55,13 +61,6 @@ def main():
         delta = clock.tick(60)
         # get the delta that we'll use later
         dt = delta / 1000
-        # check if asteroids meet with the bullets
-        for asteroid in asteroids:
-            for shot in shots:
-                if asteroid.collides_with(shot):
-                    asteroid.kill()
-                    shot.kill()
-
 
 if __name__ == "__main__":
 
