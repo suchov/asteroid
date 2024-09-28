@@ -14,23 +14,26 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
-    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-    dt = 0
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
+
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+    dt = 0
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         # update method to update the ship dicretion on the button press
-        updatable.update(dt)
+        for obj in updatable:
+            obj.update(dt)
         # define the screen color ...
         screen.fill(color='black', rect=None, special_flags=0)
         # re-render player on the screen
-        updatable.draw(screen)
+        for obj in drawable:
+            obj.draw(screen)
         # Update the display
         pygame.display.flip()
         # Limit the data to 60 FPS
