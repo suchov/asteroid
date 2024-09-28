@@ -4,6 +4,7 @@
 import pygame
 from constants import *
 from circleshape import CircleShape
+from shot import Shot
 
 
 class Player(CircleShape):
@@ -39,8 +40,17 @@ class Player(CircleShape):
             self.move(dt)
         if keys[pygame.K_s]:
             self.move(-dt)
+        if keys[pygame.K_SPACE]:
+            self.shoot(dt)
 
     # modifaying player position method by the key moves
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * PLAYER_SPEED * dt
+
+    # the ability to shoot the asteroids
+    def shoot(self, dt):
+        # creat a shot
+        # write the little bustard, give it a speed
+        shot = Shot(self.position.x, self.position.y)
+        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
